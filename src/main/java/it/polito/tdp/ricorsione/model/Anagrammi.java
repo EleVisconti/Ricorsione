@@ -8,7 +8,8 @@ public class Anagrammi {
 	 * @param s
 	 */
 	public void anagramma(String s) {
-		anagramma_ricorsiva("", 0, s);
+		anagramma_ricorsiva("", 0, s); //stampa tutti gli anagrammi che iniziano con una qualsiasi lettera (stringa vuota) 
+		//e che contengono tutte le lettere della stringa s
 	}
 
 	/**
@@ -26,9 +27,11 @@ public class Anagrammi {
 		} else {
 			/* caso normale */
 			// es: parziale="AC", livello=2, rimanenti="BD"
+			
+			//al livello 2 guardo solo il terzo carattere (es. se mi manca "BD" porvo con B e poi con D al terzo posto
 			for (int pos = 0; pos < rimanenti.length(); pos++) {
-				String nuova_parziale = parziale + rimanenti.charAt(pos);
-				String nuova_rimanenti = rimanenti.substring(0, pos) + rimanenti.substring(pos + 1);
+				String nuova_parziale = parziale + rimanenti.charAt(pos); //aggiungo ogni volta una delle lettere rimanenti
+				String nuova_rimanenti = rimanenti.substring(0, pos) + rimanenti.substring(pos + 1); //ho tolto dalla stringa rimanenti il carattere in posizione pos!
 				anagramma_ricorsiva(nuova_parziale, livello + 1, nuova_rimanenti);
 			}
 		}
